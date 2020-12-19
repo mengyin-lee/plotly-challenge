@@ -110,9 +110,9 @@ function displayDemo(dataID) {
         // get the metadata info for the demographic panel
            let metadata = data.metadata;
            console.log(metadata)  
-        // // filter meta data info by id
-        //    let filteredMetaData = metadata.filter(meta => meta.id.toString() == dataID);
-        //    let filteredData = filteredMetaData[0];
+        // filter meta data info by id
+           let filteredMetaData = metadata.filter(meta => meta.id.toString() == dataID);
+           let filteredData = filteredMetaData[0];
 
         // select demographic panel to put data
            let demoInfo = d3.select("#sample-metadata");  
