@@ -8,14 +8,12 @@ function buildPlots(dataID) {
     // The dataPromise from the JSON samples file is named sampleData as the argument
     dataPromise.then((sampleData) => {
         console.log(sampleData);
+
         let samples = sampleData.samples;
+
+        //Apply filter to reflect the sample data selection
         let filteredSample = samples.filter(sampleElement => sampleElement.id == dataID);
-        // let otu_ids = fileteredSample.samples[0].otu_ids;
-        // console.log(otu_ids);
-        // let otu_labels = filteredSample.samples[0].otu_labels;
-        // console.log (otu_labels);
-        // let sampleValues = filteredSample.samples[0].sample_values;
-        // console.log(sampleValues);
+        
         let otu_ids = filteredSample[0].otu_ids;
         console.log(otu_ids);
         let otu_labels = filteredSample[0].otu_labels;
@@ -112,9 +110,9 @@ function displayDemo(dataID) {
         // get the metadata info for the demographic panel
            let metadata = data.metadata;
            console.log(metadata)  
-        // filter meta data info by id
-           let filteredMetaData = metadata.filter(meta => meta.id.toString() == dataID);
-           let filteredData = filteredMetaData[0];
+        // // filter meta data info by id
+        //    let filteredMetaData = metadata.filter(meta => meta.id.toString() == dataID);
+        //    let filteredData = filteredMetaData[0];
 
         // select demographic panel to put data
            let demoInfo = d3.select("#sample-metadata");  
