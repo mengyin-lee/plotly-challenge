@@ -8,11 +8,19 @@ function buildPlots(dataID) {
     // The dataPromise from the JSON samples file is named sampleData as the argument
     dataPromise.then((sampleData) => {
         console.log(sampleData);
-        let otu_ids = sampleData.samples[0].otu_ids;
+        let samples = sampleData.samples;
+        let filteredSample = samples.filter(sampleElement => sampleElement.id == dataID);
+        // let otu_ids = fileteredSample.samples[0].otu_ids;
+        // console.log(otu_ids);
+        // let otu_labels = filteredSample.samples[0].otu_labels;
+        // console.log (otu_labels);
+        // let sampleValues = filteredSample.samples[0].sample_values;
+        // console.log(sampleValues);
+        let otu_ids = filteredSample[0].otu_ids;
         console.log(otu_ids);
-        let otu_labels = sampleData.samples[0].otu_labels;
+        let otu_labels = filteredSample[0].otu_labels;
         console.log (otu_labels);
-        let sampleValues = sampleData.samples[0].sample_values;
+        let sampleValues = filteredSample[0].sample_values;
         console.log(sampleValues);
 
 // 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
@@ -103,10 +111,11 @@ function displayDemo(dataID) {
     dataPromise.then((data)=> {
         // get the metadata info for the demographic panel
            let metadata = data.metadata;
-           console.log(metadata)
-    
+           console.log(metadata)  
         // filter meta data info by id
-           let filteredData = metadata.filter(meta => meta.id.toString() === dataID)[0];
+           let filteredMetaData = metadata.filter(meta => meta.id.toString() == dataID);
+           let filteredData = filteredMetaData[0];
+
         // select demographic panel to put data
            let demoInfo = d3.select("#sample-metadata");  
         // empty the demographic info panel each time before refreshing with new id information
