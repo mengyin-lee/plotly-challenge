@@ -69,61 +69,61 @@ function buildPlots(dataID) {
     // Use otu_ids for the marker colors.
     // Use otu_labels for the text values.
 
-        // prepare trace for bubble chart
-        let trace2 = {
-            x: otu_ids,
-            y: sampleValues,
-            mode: "markers",
-            marker: {
-                size: sampleValues,
-                color: otu_ids
-            },
-            text: otu_labels
-        };
-        // set layout for bubble plot
-        let layout2 = {
-            title: "Bacteria Cultures per Sample",
-            xaxis:{title: "OTU (Operational Taxonomic Unit) ID: " + dataID},
-            hovermode: "closest",
-            font: { color: "#04420e", family:"Ariel, Helvetica, sans-serif"},
-            height: 600,
-            width: 1000
-        };
-        // create data variable 
-        let data2 = [trace2];
-        // bubble plot using Plotly
-        Plotly.newPlot("bubble", data2, layout2); 
+        // // prepare trace for bubble chart
+        // let trace2 = {
+        //     x: otu_ids,
+        //     y: sampleValues,
+        //     mode: "markers",
+        //     marker: {
+        //         size: sampleValues,
+        //         color: otu_ids
+        //     },
+        //     text: otu_labels
+        // };
+        // // set layout for bubble plot
+        // let layout2 = {
+        //     title: "Bacteria Cultures per Sample",
+        //     xaxis:{title: "OTU (Operational Taxonomic Unit) ID: " + dataID},
+        //     hovermode: "closest",
+        //     font: { color: "#04420e", family:"Ariel, Helvetica, sans-serif"},
+        //     height: 600,
+        //     width: 1000
+        // };
+        // // create data variable 
+        // let data2 = [trace2];
+        // // bubble plot using Plotly
+        // Plotly.newPlot("bubble", data2, layout2); 
     
     });
 }
 
 // 4. Display the sample metadata, i.e., an individual's demographic information.
-function displayDemo(dataID) {
-    // read the json file to get data
-    dataPromise.then((data)=> {
-        // get the metadata info for the demographic panel
-           let metadata = data.metadata;
-           console.log(metadata)
+// function displayDemo(dataID) {
+//     // read the json file to get data
+//     dataPromise.then((data)=> {
+//         // get the metadata info for the demographic panel
+//            let metadata = data.metadata;
+//            console.log(metadata)
     
-        // filter meta data info by id
-           let filteredData = metadata.filter(meta => meta.id.toString() === dataID)[0];
-        // select demographic panel to put data
-           let demoInfo = d3.select("#sample-metadata");  
-        // empty the demographic info panel each time before refreshing with new id information
-           demoInfo.html("");
+//         // filter meta data info by id
+//            let filteredData = metadata.filter(meta => meta.id.toString() === dataID)[0];
+//         // select demographic panel to put data
+//            let demoInfo = d3.select("#sample-metadata");  
+//         // empty the demographic info panel each time before refreshing with new id information
+//            demoInfo.html("");
            
-// 5. Display each key-value pair from the metadata JSON object somewhere on the page.
-           Object.entries(filteredData).forEach(([key, value]) => {   
-                demoInfo.append("h6").text(`${key.toUpperCase()}: ${value}`)
-            });
-        });
-    }
+// // 5. Display each key-value pair from the metadata JSON object somewhere on the page.
+//            Object.entries(filteredData).forEach(([key, value]) => {   
+//                 demoInfo.append("h6").text(`${key.toUpperCase()}: ${value}`)
+//             });
+//         });
+    // }
 
 // 6. Update all of the plots any time that a new sample is selected
-function optionChanged(dataID) {
-    buildPlots(dataID);
-    displayDemo(dataID);
-}
+// function optionChanged(dataID) {
+//     buildPlots(dataID);
+//     displayDemo(dataID);
+// }
 
 // Function for initial data rendering
 function init() {
